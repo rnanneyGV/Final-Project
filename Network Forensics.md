@@ -25,13 +25,3 @@ What are the IP addresses used in the actual infection traffic?
 
 As a bonus, retrieve the desktop background of the Windows host.
 
-
-
-Illegal Downloads
-Find the following information about the machine with IP address 10.0.0.201:
-
-
-MAC address
-Windows username
-OS version
-Which torrent file did the user download?

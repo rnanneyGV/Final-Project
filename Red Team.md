@@ -109,8 +109,3 @@ The Red Team was able to penetrate Target 1 and retrieve the following confident
   - With access to root, found the 4th flag:
 
 !C:\Users\Nanneys\Final-Project\Images\Flag4.png
-
-
-
-
-[flag4]
