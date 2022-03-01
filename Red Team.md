@@ -43,9 +43,9 @@ The Red Team was able to penetrate Target 1 and retrieve the following confident
 
   - After enumerating users, guessed user Michael’s password: michael
   - Connected via SSH using Michael’s credentials.
-    - **$ ssh michael@192.168.1.110 **
+    - **$ ssh michael@192.168.1.110**
   - Found first flag in /var/www/html/service.html directory and file by using following command:
-    - **$ grep -ir flag1 /var/www **
+    - **$ grep -ir flag1 /var/www**
 
 ![Flag1](https://user-images.githubusercontent.com/88005785/156202721-05f782ae-8cb3-4adb-9fc1-d21f3123007e.png)
 
@@ -73,11 +73,11 @@ The Red Team was able to penetrate Target 1 and retrieve the following confident
 
 ![mysql table](https://user-images.githubusercontent.com/88005785/156202856-bb8acbbf-d34a-4243-97b7-cb9faf1643eb.png)
 
-    - **select * from wp_posts;**
+     - select * from wp_posts;
 
 ![Flag3](https://user-images.githubusercontent.com/88005785/156202875-8cdb60ff-32a1-4184-a169-831b859b311f.png)
 
-    - **select * from wp_users;**
+    - select * from wp_users;
 
 ![Hashed passwords](https://user-images.githubusercontent.com/88005785/156202901-b6ed3cce-eb4c-4b72-83b5-1daec9a720f2.png)
 
