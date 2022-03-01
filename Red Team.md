@@ -1,18 +1,18 @@
-##Red Team: Summary of Operations
+## Red Team: Summary of Operations
 
-Table of Contents
+# Table of Contents
 
 - Exposed Services
 - Critical Vulnerabilities
 - Exploitation
 
-Exposed Services
+# Exposed Services
 
-Nmap scan results for each machine reveal the below services and OS details:
+- Nmap scan results for each machine reveal the below services and OS details:
 
-- $ nmap -sV -A 192.168.1.100
+  - $ nmap -sV -A 192.168.1.100
 
-!C:\Users\Nanneys\Final-Project\Images\NMAP_scan.png
+![NMAP scan](https://user-images.githubusercontent.com/88005785/156202449-00d3d6a3-2b1a-4f3a-b20a-a435e417e40d.png)
 
 This scan identifies the services below as potential points of entry for Target 1:
 
