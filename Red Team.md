@@ -94,6 +94,7 @@ The Red Team was able to penetrate Target 1 and retrieve the following confident
   - Connected via SSH using Steven’s credentials
     - $ ssh steven@192.168.1.110
 
+
 !C:\Users\Nanneys\Final-Project\Images\Steve_account.png
 
   - Attempted to switch to root by enumerating sudo privileges:
