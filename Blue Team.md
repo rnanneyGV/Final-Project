@@ -1,6 +1,6 @@
-##Blue Team: Summary of Operations
+# Blue Team: Summary of Operations
 
-Table of Contents
+## Table of Contents
 
 - Network Topology
 - Description of Targets
@@ -8,7 +8,7 @@ Table of Contents
 - Patterns of Traffic & Behavior
 - Suggestions for Going Further
 
-Network Topology
+## Network Topology
 
 The following machines were identified on the network:
 
@@ -32,9 +32,9 @@ The following machines were identified on the network:
   - Purpose: Target Machine hosting Wordpress
   - IP Address: 192.168.1.110.
 
-!C:\Users\Nanneys\Final-Project\Images\Network_Diagram.png
+![Network Diagram](https://user-images.githubusercontent.com/88005785/156203320-b7c225a6-7ace-49cc-a7fb-e0e67d340c30.png)
 
-Description of Targets
+## Description of Targets
 
 The target of this attack was the Target 1 VM (192.168.1.110).
 
@@ -44,11 +44,11 @@ Target 1 is an Apache web server and has SSH enabled, so ports 80 and 22 are pos
 - HTTP Request Size Monitor
 - CPU Usage Monitor
 
-Monitoring the Targets
+## Monitoring the Targets
 
 Traffic to these services should be carefully monitored. To this end, we have implemented the alerts below:
 
-Excessive HTTP Errors
+_Excessive HTTP Errors_
 
 “Excessive HTTP Errors” is implemented as follows:
 
@@ -57,7 +57,7 @@ Excessive HTTP Errors
 - Vulnerability Mitigated: Enumeration and Brute Force
 - Reliability: TODO: Does this alert generate lots of false positives/false negatives? Rate as low, medium, or high reliability.
 
-HTTP Request Size Monitor
+_HTTP Request Size Monitor_
 
 “HTTP Request Size Monitor” is implemented as follows:
 
@@ -66,7 +66,7 @@ HTTP Request Size Monitor
 - Vulnerability Mitigated: Code injection and distributed denial of service (DDOS)
 - Reliability: TODO: Does this alert generate lots of false positives/false negatives? Rate as low, medium, or high reliability.
 
-CPU Usage Monitor
+_CPU Usage Monitor_
 
 “CPU Usage Monitor” is implemented as follows:
 
