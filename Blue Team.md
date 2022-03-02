@@ -52,42 +52,25 @@ _Excessive HTTP Errors_
 
 “Excessive HTTP Errors” is implemented as follows:
 
-- Metric: WHEN count() GROUPED OVER top 5 'http.response.status_code' 
-- Threshold: IS ABOVE 400 FOR THE LAST 5 minutes
-- Vulnerability Mitigated: Enumeration and Brute Force
-- Reliability: TODO: Does this alert generate lots of false positives/false negatives? Rate as low, medium, or high reliability.
+- Metric: **WHEN count() GROUPED OVER top 5 'http.response.status_code'**
+- Threshold: **IS ABOVE 400 FOR THE LAST 5 minutes**
+- Vulnerability Mitigated: **Enumeration and Brute Force**
+- Reliability: **The alert should have high reliability. Filtering out all response codes other than those than client and server errors should focus the scope of the alert to potential malicious activity.**
 
 _HTTP Request Size Monitor_
 
 “HTTP Request Size Monitor” is implemented as follows:
 
-- Metric: WHEN sum() of http.request.bytes OVER all documents 
-- Threshold: IS ABOVE 3500 FOR THE LAST 1 minute
-- Vulnerability Mitigated: Code injection and distributed denial of service (DDOS)
-- Reliability: TODO: Does this alert generate lots of false positives/false negatives? Rate as low, medium, or high reliability.
+- Metric: **WHEN sum() of http.request.bytes OVER all documents** 
+- Threshold: **IS ABOVE 3500 FOR THE LAST 1 minute**
+- Vulnerability Mitigated: **Code injection and distributed denial of service (DDOS)**
+- Reliability: **This alert may have medium reliability. HTTP request sizes in bytes typically average in the 700-800 byte size, so it's possible the threshold of this alert is properly configured, but additional monitoring may be necessary to review the nature of HTTP requests over 3500 bytes.**
 
 _CPU Usage Monitor_
 
 “CPU Usage Monitor” is implemented as follows:
 
-- Metric: WHEN max() OF system.process.cpu.total.pct OVER all documents 
-- Threshold: IS ABOVE 0.5 FOR THE LAST 5 minutes
-- Vulnerability Mitigated: Malicious software consuming system resources
-- Reliability: TODO: Does this alert generate lots of false positives/false negatives? Rate as low, medium, or high reliability.
-
-Suggestions for Going Further (Optional)
-
-TODO:
-
-Each alert above pertains to a specific vulnerability/exploit. Recall that alerts only detect malicious behavior, but do not stop it. For each vulnerability/exploit identified by the alerts above, suggest a patch. E.g., implementing a blocklist is an effective tactic against brute-force attacks. It is not necessary to explain how to implement each patch.
-
-The logs and alerts generated during the assessment suggest that this network is susceptible to several active threats, identified by the alerts above. In addition to watching for occurrences of such threats, the network should be hardened against them. The Blue Team suggests that IT implement the fixes below to protect the network:
-Vulnerability 1
-Patch: TODO: E.g., install special-security-package with apt-get
-Why It Works: TODO: E.g., special-security-package scans the system for viruses every day
-Vulnerability 2
-Patch: TODO: E.g., install special-security-package with apt-get
-Why It Works: TODO: E.g., special-security-package scans the system for viruses every day
-Vulnerability 3
-Patch: TODO: E.g., install special-security-package with apt-get
-Why It Works: TODO: E.g., special-security-package scans the system for viruses every day
+- Metric: **WHEN max() OF system.process.cpu.total.pct OVER all documents** 
+- Threshold: **IS ABOVE 0.5 FOR THE LAST 5 minutes**
+- Vulnerability Mitigated: **Malicious software consuming system resources**
+- Reliability: **This alert may have low reliability as it monitors the total CPU percantage used by the service since the service was launched. Many innocous applications consume substantial CPU resources, so this alert may trigger many false-positive flags.**
