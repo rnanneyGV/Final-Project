@@ -39,8 +39,6 @@ Find the following information about the infected Windows machine:
 
 - What are the IP addresses used in the actual infection traffic? **Source: 172.16.4.205 Dest: 205.185.216.10**
 
-(infection traffic)
-
 ## Illegal Downloads
 Find the following information about the machine with IP address 10.0.0.201:
 
