@@ -37,7 +37,7 @@ Find the following information about the infected Windows machine:
 
 ![matthijs](https://user-images.githubusercontent.com/88005785/156289435-b65a0a97-4728-47b2-9980-33a535649650.png)
 
-- What are the IP addresses used in the actual infection traffic?
+- What are the IP addresses used in the actual infection traffic? **Source: 172.16.4.205 Dest: 205.185.216.10**
 
 (infection traffic)
 
@@ -52,9 +52,7 @@ Find the following information about the machine with IP address 10.0.0.201:
 
 ![elmer](https://user-images.githubusercontent.com/88005785/156289665-ba1cc145-a6ff-423c-9f39-5be4ffd7910c.png)
 
-- OS version: 
-
-(OS)
+- OS version: **Windows 10.0; win 64**
 
 - Which torrent file did the user download? **Betty Boop Rhythm on the Reservation** 
 
